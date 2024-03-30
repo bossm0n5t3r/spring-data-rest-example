@@ -1,0 +1,30 @@
+meta {
+  name: Update User
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/users/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "{{NAME}}",
+    "email": "{{EMAIL}}",
+    "password": "{{PASSWORD}}",
+    "age": {{AGE}}
+  }
+}
+
+tests {
+  if (res.getStatus() === 200) {
+    const user = res.getBody();
+    bru.setEnvVar('NAME', user.name);
+    bru.setEnvVar('EMAIL', user.email);
+    bru.setEnvVar('PASSWORD', user.password);
+    bru.setEnvVar('AGE', user.age);
+  }
+}

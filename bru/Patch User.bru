@@ -1,0 +1,17 @@
+meta {
+  name: Patch User
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{HOST}}/users/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "{{NEW_EMAIL}}"
+  }
+}
